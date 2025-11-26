@@ -13,9 +13,8 @@ const PropertyCard = ({ property, className = "" }) => {
   const [imageError, setImageError] = useState(false);
   const { isPropertyFavorite, toggleFavorite } = useFavorites();
 
-  const isFavorite = isPropertyFavorite(property.Id);
-
-  const handleToggleFavorite = (e) => {
+const isFavorite = isPropertyFavorite(property.Id);
+const handleToggleFavorite = (e) => {
     e.stopPropagation();
     toggleFavorite(property.Id);
   };
@@ -53,7 +52,7 @@ const PropertyCard = ({ property, className = "" }) => {
             
             {/* Status Badge */}
             <div className="absolute top-3 left-3">
-              <Badge variant={property.status === "For Sale" ? "primary" : "accent"}>
+<Badge variant={property.status === "For Sale" ? "primary" : "accent"}>
                 {property.status}
               </Badge>
             </div>
@@ -70,7 +69,7 @@ const PropertyCard = ({ property, className = "" }) => {
 
             {/* Property Type */}
             <div className="absolute bottom-3 left-3">
-              <Badge variant="default" className="bg-white/90 text-gray-800">
+<Badge variant="default" className="bg-white/90 text-gray-800">
                 {property.propertyType}
               </Badge>
             </div>
@@ -80,7 +79,7 @@ const PropertyCard = ({ property, className = "" }) => {
           <div className="p-4 space-y-3">
             <div>
               <h3 className="font-display font-semibold text-lg text-gray-900 line-clamp-1">
-                {property.title}
+{property.title}
               </h3>
               <p className="text-gray-600 text-sm flex items-center mt-1">
                 <ApperIcon name="MapPin" size={14} className="mr-1" />
@@ -93,7 +92,7 @@ const PropertyCard = ({ property, className = "" }) => {
             <div className="flex items-center justify-between pt-2 border-t border-gray-100">
               <div className="text-right">
                 <div className="text-2xl font-display font-bold text-primary">
-                  {property.status === "For Rent" 
+{property.status === "For Rent" 
                     ? `$${property.price.toLocaleString()}/mo`
                     : `$${property.price.toLocaleString()}`
                   }
@@ -110,7 +109,7 @@ const PropertyCard = ({ property, className = "" }) => {
       {/* Property Detail Modal */}
       {isDetailOpen && (
         <PropertyDetail
-          property={property}
+property={property}
           isOpen={isDetailOpen}
           onClose={() => setIsDetailOpen(false)}
         />

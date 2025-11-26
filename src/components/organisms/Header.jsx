@@ -1,9 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import useFavorites from "@/hooks/useFavorites";
+import LogoutButton from "@/components/atoms/LogoutButton";
 import ApperIcon from "@/components/ApperIcon";
 import SearchBar from "@/components/molecules/SearchBar";
-import { useFavorites } from "@/hooks/useFavorites";
 import { cn } from "@/utils/cn";
 
 const Header = ({ onSearch }) => {
@@ -37,7 +38,7 @@ const Header = ({ onSearch }) => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+<nav className="hidden md:flex items-center space-x-8">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -58,6 +59,7 @@ const Header = ({ onSearch }) => {
                 )}
               </Link>
             ))}
+            <LogoutButton />
           </nav>
 
           {/* Search Bar - Desktop */}
@@ -96,7 +98,7 @@ const Header = ({ onSearch }) => {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
           >
-            <nav className="px-4 py-2 space-y-1">
+<nav className="px-4 py-2 space-y-1">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
@@ -120,6 +122,9 @@ const Header = ({ onSearch }) => {
                   )}
                 </Link>
               ))}
+              <div className="px-3 py-3">
+                <LogoutButton />
+              </div>
             </nav>
           </motion.div>
         )}

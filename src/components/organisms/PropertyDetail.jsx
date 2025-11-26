@@ -14,7 +14,6 @@ const PropertyDetail = ({ property, isOpen, onClose }) => {
   const { isPropertyFavorite, toggleFavorite } = useFavorites();
 
   const isFavorite = isPropertyFavorite(property.Id);
-
   // Prevent scroll when modal is open
   useEffect(() => {
     if (isOpen) {
@@ -28,10 +27,9 @@ const PropertyDetail = ({ property, isOpen, onClose }) => {
     };
   }, [isOpen]);
 
-  const handleToggleFavorite = () => {
+const handleToggleFavorite = () => {
     toggleFavorite(property.Id);
   };
-
   const handleContact = () => {
     toast.info("Contact feature would connect with property agent");
   };
@@ -68,7 +66,7 @@ const PropertyDetail = ({ property, isOpen, onClose }) => {
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-gray-200">
                   <div className="flex items-center space-x-4">
-                    <Badge variant={property.status === "For Sale" ? "primary" : "accent"}>
+<Badge variant={property.status === "For Sale" ? "primary" : "accent"}>
                       {property.status}
                     </Badge>
                     <Badge variant="outline">{property.propertyType}</Badge>
@@ -106,7 +104,7 @@ const PropertyDetail = ({ property, isOpen, onClose }) => {
                     <div className="space-y-6">
                       <div>
                         <h1 className="text-3xl font-display font-bold text-gray-900 mb-2">
-                          {property.title}
+{property.title}
                         </h1>
                         <div className="flex items-center text-gray-600 mb-4">
                           <ApperIcon name="MapPin" size={16} className="mr-2" />
@@ -117,11 +115,11 @@ const PropertyDetail = ({ property, isOpen, onClose }) => {
                       <PropertySpecs property={property} variant="detailed" />
 
                       {/* Features */}
-                      {property.features && property.features.length > 0 && (
+{property.features && property.features.length > 0 && (
                         <div>
                           <h3 className="text-lg font-semibold text-gray-900 mb-3">Features & Amenities</h3>
                           <div className="grid grid-cols-2 gap-2">
-                            {property.features.map((feature, index) => (
+{property.features.map((feature, index) => (
                               <div key={index} className="flex items-center space-x-2">
                                 <ApperIcon name="Check" size={16} className="text-green-500" />
                                 <span className="text-sm text-gray-700">{feature}</span>
@@ -155,7 +153,7 @@ const PropertyDetail = ({ property, isOpen, onClose }) => {
 
                   {/* Description */}
                   <div className="px-6 pb-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Description</h3>
+<h3 className="text-lg font-semibold text-gray-900 mb-3">Description</h3>
                     <p className="text-gray-700 leading-relaxed">{property.description}</p>
                   </div>
 
@@ -167,7 +165,7 @@ const PropertyDetail = ({ property, isOpen, onClose }) => {
                         <ApperIcon name="Map" size={48} className="mx-auto mb-2" />
                         <p>Interactive map would be displayed here</p>
                         <p className="text-sm mt-1">
-                          Coordinates: {property.coordinates?.lat}, {property.coordinates?.lng}
+Coordinates: {property.coordinates?.lat}, {property.coordinates?.lng}
                         </p>
                       </div>
                     </div>
