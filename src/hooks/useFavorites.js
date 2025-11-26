@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import favoriteService from "@/services/api/favoriteService";
 import { toast } from "react-toastify";
+import favoriteService from "@/services/api/favoriteService";
 import propertyService from "@/services/api/propertyService";
 export const useFavorites = () => {
   const { user, isAuthenticated } = useSelector((state) => state.user);
@@ -16,8 +16,9 @@ export const useFavorites = () => {
       setFavorites([]);
       setFavoriteProperties([]);
     }
-  }, [isAuthenticated, user]);
-const loadFavorites = async () => {
+}, [isAuthenticated, user]);
+
+  const loadFavorites = async () => {
     if (!user) return;
     
     try {
@@ -27,6 +28,7 @@ const loadFavorites = async () => {
       console.error("Error loading favorites:", error);
     }
   };
+
   const loadFavoriteProperties = async () => {
     if (favorites.length === 0) {
       setFavoriteProperties([]);
@@ -48,7 +50,7 @@ const loadFavorites = async () => {
 
   useEffect(() => {
     loadFavoriteProperties();
-}, [favorites]);
+  }, [favorites]);
 
   const addToFavorites = async (propertyId) => {
     if (!isAuthenticated || !user) {
@@ -83,11 +85,11 @@ const loadFavorites = async () => {
       toast.error("Failed to remove from favorites");
       console.error("Error removing from favorites:", error);
     }
-}
   };
 
   const toggleFavorite = async (propertyId) => {
-    if (isFavorite) {
+    const isCurrentlyFavorite = isPropertyFavorite(propertyId);
+    if (isCurrentlyFavorite) {
       await removeFromFavorites(propertyId);
     } else {
       await addToFavorites(propertyId);
@@ -107,7 +109,7 @@ const loadFavorites = async () => {
     toggleFavorite,
     isPropertyFavorite,
     favoritesCount: favorites.length
-};
+  };
 };
 
 export default useFavorites;
